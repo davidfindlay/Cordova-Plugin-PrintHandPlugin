@@ -12,11 +12,44 @@ import org.json.JSONException;
 
 public class ShareIntentPrintHandPlugin extends CordovaPlugin{
 
-	private  String PACKAGE_NAME_FREE = "com.dynamixsoftware.printhand";
-	private  String PACKAGE_NAME_PREMIUM = "com.dynamixsoftware.printhand.premium";
+	private String PACKAGE_NAME_FREE = "com.dynamixsoftware.printhand";
+	private String PACKAGE_NAME_PREMIUM = "com.dynamixsoftware.printhand.premium";
 	private static String TAG = "CordovaPluginShareIntent";
     private Context context;
     private CallbackContext handleCallbackContext;
+
+    private String printHandPackage;
+
+    ShareIntentPrintHandPlugin() {
+    	super();
+        PackageManager pm = context.getPackageManager();
+        if (isPrintHandPremiumInstalled(pm)) {
+            printHandPackage = PACKAGE_NAME_PREMIUM;
+        } else if (isPrintHandFreeInstalled(pm)) {
+            printHandPackage = PACKAGE_NAME_FREE;
+        }
+    }
+
+    private isPrintHandPremiumInstalled(PackageManager packageManager) {
+        boolean found = true;
+        try {
+            packageManager.getPackageInfo(PACKAGE_NAME_PREMIUM, 0);
+        } catch (Package.NameNotFoundException e) {
+            found = false;
+        }
+        return found;
+    }
+
+    private isPrintHandFreeInstalled(PackageManager packageManager) {
+        boolean found = true;
+        try {
+            packageManager.getPackageInfo(PACKAGE_NAME_FREE, 0);
+        } catch (Package.NameNotFoundException e) {
+            found = false;
+        }
+        return found;
+    }
+
 	@Override
 	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 		this.handleCallbackContext = callbackContext;
@@ -117,23 +150,19 @@ public class ShareIntentPrintHandPlugin extends CordovaPlugin{
 			i.putExtra(Intent.EXTRA_STREAM, uri);
 			i.setType("image/png");
 		}
-		i.setPackage(PACKAGE_NAME_FREE);
-		try {
-			context.startActivity(i);
-			handleCallbackContext.success();
-			return;
-		} catch (ActivityNotFoundException e) {
-			Log.d(TAG, "Application with package name " + PACKAGE_NAME_FREE + " is not installed.");
-			handleCallbackContext.error("Application with package name " + PACKAGE_NAME_FREE + " is not installed.");
-		}
-		i.setPackage(PACKAGE_NAME_PREMIUM);
-		try {
-			context.startActivity(i);
-			handleCallbackContext.success();
-		} catch (ActivityNotFoundException e) {
-			Log.d(TAG, "Application with package name " + PACKAGE_NAME_PREMIUM + " is not installed.");
-			handleCallbackContext.error("Application with package name " + PACKAGE_NAME_PREMIUM + " is not installed.");
-		}
+
+        if (printHandPackage != null) {
+            i.setPackage(printHandPackage);
+            try {
+                context.startActivity(i);
+                handleCallbackContext.success();
+                return;
+            } catch (ActivityNotFoundException e) {
+                handleCallbackContext.error("Application with package name " + printHandPackage + " is not available.");
+            }
+        } else {
+            handleCallbackContext.error("PrintHand not available");
+        }
 	}
 
 
@@ -174,24 +203,19 @@ public class ShareIntentPrintHandPlugin extends CordovaPlugin{
 			i.putExtra(Intent.EXTRA_STREAM, uri);
 			i.setType("application/msword");
 		}
-		i.setPackage(PACKAGE_NAME_FREE);
-		try {
-			context.startActivity(i);
-			handleCallbackContext.success();
-			return;
-		} catch (ActivityNotFoundException e) {
-			Log.d(TAG, "Application with package name " + PACKAGE_NAME_FREE + " is not installed.");
-			handleCallbackContext.error("Application with package name " + PACKAGE_NAME_FREE + " is not installed.");
+		if (printHandPackage != null) {
+            i.setPackage(printHandPackage);
+            try {
+                context.startActivity(i);
+                handleCallbackContext.success();
+                return;
+            } catch (ActivityNotFoundException e) {
+                handleCallbackContext.error("Application with package name " + printHandPackage + " is not available.");
 
-		}
-		i.setPackage(PACKAGE_NAME_PREMIUM);
-		try {
-			context.startActivity(i);
-			handleCallbackContext.success();
-		} catch (ActivityNotFoundException e) {
-			handleCallbackContext.error("Application with package name " + PACKAGE_NAME_PREMIUM + " is not installed.");
-
-		}
+            }
+        } else {
+            handleCallbackContext.error("PrintHand not available");
+        }
 	}
 
 	/***
@@ -201,24 +225,19 @@ public class ShareIntentPrintHandPlugin extends CordovaPlugin{
 		Intent i = new Intent(Intent.ACTION_VIEW);
 		Uri uri = Uri.parse(url);
 		i.setDataAndType(uri, "text/html");
-		i.setPackage(PACKAGE_NAME_FREE);
-		
-		try {
-			context.startActivity(i);
-			handleCallbackContext.success();
-			return;
-		} catch (ActivityNotFoundException e) {
 
-			handleCallbackContext.error("Application with package name " + PACKAGE_NAME_FREE + " is not installed.");
-		}
-		
-		i.setPackage(PACKAGE_NAME_PREMIUM);
-		try {
-			context.startActivity(i);
-			handleCallbackContext.success();
-		} catch (ActivityNotFoundException e) {
-			handleCallbackContext.error("Application with package name " + PACKAGE_NAME_PREMIUM + " is not installed.");
-		}
+        if (printHandPackage != null) {
+            i.setPackage(printHandPackage);
+            try {
+                context.startActivity(i);
+                handleCallbackContext.success();
+                return;
+            } catch (ActivityNotFoundException e) {
+                handleCallbackContext.error("Application with package name " + printHandPackage + " is not available.");
+            }
+        } else {
+            handleCallbackContext.error("PrintHand not available");
+        }
 	}
 	
 	/***
@@ -229,23 +248,20 @@ public class ShareIntentPrintHandPlugin extends CordovaPlugin{
 
 		i.setType("text/html");
 		i.putExtra(Intent.EXTRA_TEXT, printString);
-		
-		i.setPackage(PACKAGE_NAME_FREE);
-		try {
-			context.startActivity(i);
-			handleCallbackContext.success();
-			return;
-		} catch (ActivityNotFoundException e) {
 
-			handleCallbackContext.error("Application with package name " + PACKAGE_NAME_FREE + " is not installed.");
-		}
-		i.setPackage(PACKAGE_NAME_PREMIUM);
-		try {
-			context.startActivity(i);
-			handleCallbackContext.success();
-		} catch (ActivityNotFoundException e) {
-			handleCallbackContext.error("Application with package name " + PACKAGE_NAME_PREMIUM + " is not installed.");
-		}
+        if (printHandPackage != null) {
+            i.setPackage(printHandPackage);
+            try {
+                context.startActivity(i);
+                handleCallbackContext.success();
+                return;
+            } catch (ActivityNotFoundException e) {
+
+                handleCallbackContext.error("Application with package name " + printHandPackage + " is not available.");
+            }
+        } else {
+            handleCallbackContext.error("PrintHand not available");
+        }
 	}
 
 }
