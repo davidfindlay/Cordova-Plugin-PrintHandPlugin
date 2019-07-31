@@ -30,7 +30,7 @@ public class ShareIntentPrintHandPlugin extends CordovaPlugin{
         }
     }
 
-    private isPrintHandPremiumInstalled(PackageManager packageManager) {
+    private boolean isPrintHandPremiumInstalled(PackageManager packageManager) {
         boolean found = true;
         try {
             packageManager.getPackageInfo(PACKAGE_NAME_PREMIUM, 0);
@@ -40,7 +40,7 @@ public class ShareIntentPrintHandPlugin extends CordovaPlugin{
         return found;
     }
 
-    private isPrintHandFreeInstalled(PackageManager packageManager) {
+    private boolean isPrintHandFreeInstalled(PackageManager packageManager) {
         boolean found = true;
         try {
             packageManager.getPackageInfo(PACKAGE_NAME_FREE, 0);
