@@ -4,8 +4,11 @@ var PrintHandPlugin = {
     printWithHttpURL: function (callBackSuccess, callBackFail, webUrl) {
         cordova.exec(callBackSuccess, callBackFail, "ShareIntentPrintHandPlugin", "printWithHttpURL", [webUrl]);
     },
+    // printWebPageWithContain: function (callBackSuccess, callBackFail, htmlFormatString) {
+    //     cordova.exec(callBackSuccess, callBackFail, "ShareIntentPrintHandPlugin", "printWebPageWithContain", [htmlFormatString]);
+    // },
     printWebPageWithContain: function (callBackSuccess, callBackFail, htmlFormatString) {
-        cordova.exec(callBackSuccess, callBackFail, "ShareIntentPrintHandPlugin", "printWebPageWithContain", [htmlFormatString]);
+        cordova.exec(callBackSuccess, callBackFail, "IntentApiPrintHandPlugin", "printWebPageWithContain", [htmlFormatString]);
     },
     printImage: function (callBackSuccess, callBackFail, imagePath, activeView) {
         /*Active View set true/false*/
