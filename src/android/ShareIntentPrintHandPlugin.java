@@ -1,4 +1,4 @@
-package com.printhand.printingsample;
+package io.github.cordovaPluginPrintHand;
 
 import android.content.ActivityNotFoundException;
 import android.content.Context;
