@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8942e2d3-846e-41f7-b9a6-b6f45c07dcc6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/android/FilesUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/android/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugin.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/android/IntentApiPrintHandPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/android/IntentApiPrintHandPlugin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/android/ShareIntentPrintHandPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/android/ShareIntentPrintHandPlugin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/printhandplugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/printhandplugin.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -223,7 +216,14 @@
       <option name="project" value="LOCAL" />
       <updated>1564533153945</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Print with confirmation works, &#10;Print without confirmation still errors.">
+      <created>1565565606220</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1565565606221</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -270,7 +270,8 @@
     <MESSAGE value="Small fixes for compatability in Ionic Platform." />
     <MESSAGE value="Changes to avoid errors when determining if PrintHand Premium is &#10;installed." />
     <MESSAGE value="Fix typo." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix typo." />
+    <MESSAGE value="Print with confirmation works, &#10;Print without confirmation still errors." />
+    <option name="LAST_COMMIT_MESSAGE" value="Print with confirmation works, &#10;Print without confirmation still errors." />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/android/FilesUtils.java">
