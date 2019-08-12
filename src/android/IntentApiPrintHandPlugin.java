@@ -29,6 +29,7 @@ import org.json.JSONException;
 import java.io.File;
 
 import java.util.*;
+import java.util.List;
 
 public class IntentApiPrintHandPlugin extends CordovaPlugin {
 
@@ -105,8 +106,8 @@ public class IntentApiPrintHandPlugin extends CordovaPlugin {
             }
 
             try {
-                List<PrintHandOption> fileOptions = intentApi.getFilesOptions();
-                messages += fileOptions.toString();
+//                List<PrintHandOption> fileOptions = intentApi.getFilesOptions();
+//                messages += fileOptions.toString();
                 intentApi.print(fileDescription, mimeType, Uri.parse("content://" + filePath));
             } catch (RemoteException e) {
                 callbackContext.error("printFile: " + e.toString());
