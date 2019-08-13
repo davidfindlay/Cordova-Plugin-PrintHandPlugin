@@ -106,11 +106,14 @@ public class IntentApiPrintHandPlugin extends CordovaPlugin {
             }
 
             try {
-//                List<PrintHandOption> fileOptions = intentApi.getFilesOptions();
-//                messages += fileOptions.toString();
-                intentApi.print(fileDescription, mimeType, Uri.parse("content://" + filePath));
+                Uri docUri = Uri.parse("content://" + filePath);
+
+                messages += "Attempt to print " + filename + "(" + filePath + ") mimeType: " +
+                        mimeType + " description: " + fileDescription + " docUri: " + docUri.toString();
+
+                intentApi.print(fileDescription, mimeType, docUri);
             } catch (RemoteException e) {
-                callbackContext.error("printFile: " + e.toString());
+                callbackContext.error(messages + " - printFile: " + e.toString());
             }
 
             callbackContext.success(messages);
